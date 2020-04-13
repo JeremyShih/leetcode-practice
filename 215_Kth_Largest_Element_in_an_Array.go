@@ -1,10 +1,7 @@
 // 2020/4/9
 package main
 
-import (
-	"fmt"
-	// "sort"
-)
+import "fmt"
 
 func main() {
 	numbers := []int{3, 2, 1, 5, 6, 4}
@@ -16,46 +13,36 @@ func main() {
 }
 
 func findKthLargest(nums []int, k int) int {
-	// fmt.Println(nums)
-	QuickSortRecursively(nums, 0, len(nums)-1)
-	// fmt.Println(nums)
+	quickSort(nums, 0, len(nums)-1)
 	return nums[len(nums)-k]
 }
 
-// 快速排序法(遞增)，使用遞迴。此為用來遞迴呼叫的函數。
-func QuickSortRecursively(array []int, start int, end int) {
-	if end > start {
+func quickSort(array []int, start int, end int) {
+	if start < end {
 		pivot := array[start]
-
-		l := start + 1
-		r := end
-
+		l, r := start+1, end
 		for {
-			for r > start && array[r] >= pivot {
+			for start < r && array[r] >= pivot {
 				r -= 1
 			}
-
-			for l <= r && array[l] <= pivot {
+			for l <= r && array[l] < pivot {
 				l += 1
 			}
 
 			if l < r {
 				array[l], array[r] = array[r], array[l]
 			} else {
-				if r > start {
+				if start < r {
 					array[start], array[r] = array[r], array[start]
 				}
-
 				break
 			}
 		}
-
-		if r > start {
-			QuickSortRecursively(array, start, r-1)
-		}
-
 		if r < end {
-			QuickSortRecursively(array, r+1, end)
+			quickSort(array, r+1, end)
+		}
+		if start < r {
+			quickSort(array, start, r-1)
 		}
 	}
 }
