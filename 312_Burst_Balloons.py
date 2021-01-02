@@ -4,7 +4,8 @@ import time
 
 class Solution:
     def jobScheduling(self, startTime, endTime, profit) -> int:
-        return dp[-1]
+        # return dp[-1]
+        return 0
 
 
 slt = Solution()
