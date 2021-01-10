@@ -2,6 +2,7 @@
 import time
 import math
 from fractions import Fraction
+import numpy
 
 
 class Solution:
